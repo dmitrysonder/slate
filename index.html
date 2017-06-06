@@ -229,108 +229,106 @@
 <h2 id="authentification">Authentification</h2>
 
 <p>The proccess of authentification</p>
-<pre class="highlight plaintext"><code>
-# Markets
 
-There are a set of methods related to markets.
-Market - is a traded pair (e.g. "BTCUSD"). Knife API provides aggregated data for specified "market" from all exchanges
+<h1 id="markets">Markets</h1>
 
-## Get all markets
+<p>There are a set of methods related to markets.
+Market - is a traded pair (e.g. &ldquo;BTCUSD&rdquo;). Knife API provides aggregated data for specified &ldquo;market&rdquo; from all exchanges</p>
 
-Returns a list of all existing markets. 
+<h2 id="get-all-markets">Get all markets</h2>
 
-## Get Market
+<p>Returns a list of all existing markets. </p>
 
-Returns a object with detailed data for specified market
+<h2 id="get-market">Get Market</h2>
 
-## Get ticker
+<p>Returns a object with detailed data for specified market</p>
 
-If no query parameters are sent, then returns ticker data for every supported symbol. If crypto(s) and/or fiat(s) are sent as parameters, then only the ticker for those values is sent
+<h2 id="get-ticker">Get ticker</h2>
 
-### Per Symbol
+<p>If no query parameters are sent, then returns ticker data for every supported symbol. If crypto(s) and/or fiat(s) are sent as parameters, then only the ticker for those values is sent</p>
 
-Returns ticker data for specified symbol
+<h3 id="per-symbol">Per Symbol</h3>
 
-### Short
+<p>Returns ticker data for specified symbol</p>
 
-Returns basic ticker denoting last and daily average price for the specified crypto/fiat values.
+<h3 id="short">Short</h3>
 
-### Ticker Changes Per Symbol
+<p>Returns basic ticker denoting last and daily average price for the specified crypto/fiat values.</p>
 
-Returns ticker values and price changes for specified market and symbol.
+<h3 id="ticker-changes-per-symbol">Ticker Changes Per Symbol</h3>
 
-### Custom
+<p>Returns ticker values and price changes for specified market and symbol.</p>
 
-This endpoint can be used to generate a custom index in a certain currency. The “inex” path parameter represents “include” or “exclude”, you can choose to generate an index removing specified exchanges, or only including the few that you require.
+<h3 id="custom">Custom</h3>
 
-Note that the exchange must have an order book in the specified currency.
+<p>This endpoint can be used to generate a custom index in a certain currency. The “inex” path parameter represents “include” or “exclude”, you can choose to generate an index removing specified exchanges, or only including the few that you require.</p>
 
-#Exchanges
+<p>Note that the exchange must have an order book in the specified currency.</p>
 
-Endpoints to communicate with existing exchanges and retreive different kinds of data
+<h1 id="exchanges">Exchanges</h1>
 
-## Get Exchanges
+<p>Endpoints to communicate with existing exchanges and retreive different kinds of data</p>
 
-Returns list of all existing exchanges. Parameters: type, markets
+<h2 id="get-exchanges">Get Exchanges</h2>
 
-Response:
+<p>Returns list of all existing exchanges. Parameters: type, markets</p>
+
+<p>Response:
 name (markets, pairs)
 health
-ping
+ping</p>
 
-## Exchange Data
+<h2 id="exchange-data">Exchange Data</h2>
 
-### Get data for Exchange
+<h3 id="get-data-for-exchange">Get data for Exchange</h3>
 
-Returns data about specified exchange:
+<p>Returns data about specified exchange:
 name
 url
 traded pairs (symbol, volumes)
 markets
-timestamp
+timestamp</p>
 
-### Get Order Book by pair
+<h3 id="get-order-book-by-pair">Get Order Book by pair</h3>
 
-Return order book for specified exchange
+<p>Return order book for specified exchange</p>
 
-### Get Trades by pair
+<h3 id="get-trades-by-pair">Get Trades by pair</h3>
 
-Return trades for specified exchange. 
+<p>Return trades for specified exchange. </p>
 
-### Get Chart Data by pair
+<h3 id="get-chart-data-by-pair">Get Chart Data by pair</h3>
 
-Return OHLCV charts for pair from specified exchange
+<p>Return OHLCV charts for pair from specified exchange</p>
 
-### Get ticker
+<h3 id="get-ticker">Get ticker</h3>
 
-Returns ticker: ask, bid, last, volume
+<p>Returns ticker: ask, bid, last, volume</p>
 
-# Meta data
+<h1 id="meta-data">Meta data</h1>
 
-## Get Meta Data
+<h2 id="get-meta-data">Get Meta Data</h2>
 
-Returns a meta data of all available coins
+<p>Returns a meta data of all available coins</p>
 
-# Conversion
+<h1 id="conversion">Conversion</h1>
 
-Endpoint to convert any currency to any currency
+<p>Endpoint to convert any currency to any currency</p>
 
-## Perform crypto-fiat conversion
+<h2 id="perform-crypto-fiat-conversion">Perform crypto-fiat conversion</h2>
 
-Returns conversion from start currency to resulting currency. Only conversion from fiat to crypto, or vice verca
+<p>Returns conversion from start currency to resulting currency. Only conversion from fiat to crypto, or vice verca</p>
 
-## Perfrom crypto-crypto conversion
+<h2 id="perfrom-crypto-crypto-conversion">Perfrom crypto-crypto conversion</h2>
 
-Return conversion from start cryptocurrency to resulting cryptocurrency.
+<p>Return conversion from start cryptocurrency to resulting cryptocurrency.</p>
 
-# General market data
+<h1 id="general-market-data">General market data</h1>
 
-## Get general Data
+<h2 id="get-general-data">Get general Data</h2>
 
-Returns general data about crypto-economics state
+<p>Returns general data about crypto-economics state</p>
 
-
-</code></pre>
           <h1 id="errors">Errors</h1>
 
 <aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&lsquo;s frontmatter. Files are included in the order listed.</aside>
