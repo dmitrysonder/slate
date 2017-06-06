@@ -1,8 +1,5 @@
 ---
-title: API Reference
-
-language_tabs:
-  - python
+title: Knife API Reference
 
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -17,131 +14,109 @@ search: true
 
 Welcome to the Knife API documentation. Knife is open RESTful API which provides historical and real-time data about cryptocurrencies markets.
 
-# Public
+## Authentification
 
-Here is a list of public methods. You do not need to have API key for using these methods. 
+The proccess of authentification
+
+```GET```
+
+# Markets
+
+There are a set of methods related to markets.
+Market - is a traded pair (e.g. "BTCUSD"). Knife API provides aggregated data for specified "market" from all exchanges
+
+## Get all markets
+
+Returns a list of all existing markets. 
+
+## Get Market
+
+Returns a object with detailed data for specified market
 
 ## Get ticker
 
-## Get market data
+If no query parameters are sent, then returns ticker data for every supported symbol. If crypto(s) and/or fiat(s) are sent as parameters, then only the ticker for those values is sent
 
-## Get All Kittens
+### Per Symbol
 
-```ruby
-require 'kittn'
+Returns ticker data for specified symbol
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+### Short
 
-```python
-import kittn
+Returns basic ticker denoting last and daily average price for the specified crypto/fiat values.
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+### Ticker Changes Per Symbol
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+Returns ticker values and price changes for specified market and symbol.
 
-```javascript
-const kittn = require('kittn');
+### Custom
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+This endpoint can be used to generate a custom index in a certain currency. The “inex” path parameter represents “include” or “exclude”, you can choose to generate an index removing specified exchanges, or only including the few that you require.
 
-> The above command returns JSON structured like this:
+Note that the exchange must have an order book in the specified currency.
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
+#Exchanges
 
-This endpoint retrieves all kittens.
+Endpoints to communicate with existing exchanges and retreive different kinds of data
 
-### HTTP Request
+## Get Exchanges
 
-`GET http://example.com/api/kittens`
+Returns list of all existing exchanges. Parameters: type, markets
 
-### Query Parameters
+Response:
+name (markets, pairs)
+health
+ping
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+## Exchange Data
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+### Get data for Exchange
 
-## Get a Specific Kitten
+Returns data about specified exchange:
+name
+url
+traded pairs (symbol, volumes)
+markets
+timestamp
 
-```ruby
-require 'kittn'
+### Get Order Book by pair
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+Return order book for specified exchange
 
-```python
-import kittn
+### Get Trades by pair
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+Return trades for specified exchange. 
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+### Get Chart Data by pair
 
-```javascript
-const kittn = require('kittn');
+Return OHLCV charts for pair from specified exchange
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
+### Get ticker
 
-> The above command returns JSON structured like this:
+Returns ticker: ask, bid, last, volume
 
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
+# Meta data
 
-This endpoint retrieves a specific kitten.
+## Get Meta Data
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Returns a meta data of all available coins
 
-### HTTP Request
+# Conversion
 
-`GET http://example.com/kittens/<ID>`
+Endpoint to convert any currency to any currency
 
-### URL Parameters
+## Perform crypto-fiat conversion
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Returns conversion from start currency to resulting currency. Only conversion from fiat to crypto, or vice verca
+
+## Perfrom crypto-crypto conversion
+
+Return conversion from start cryptocurrency to resulting cryptocurrency.
+
+# General market data
+
+## Get general Data
+
+Returns general data about crypto-economics state
+
 
