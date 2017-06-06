@@ -18,8 +18,6 @@ Welcome to the Knife API documentation. Knife is open RESTful API which provides
 
 The proccess of authentification
 
-```GET```
-
 # Markets
 
 There are a set of methods related to markets.
