@@ -201,7 +201,7 @@
     <link href="images/favicon.ico" rel="icon" type="image/ico" />
   </head>
 
-  <body class="index" data-languages="[]">
+  <body class="index" data-languages="[&quot;Examples&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,6 +210,9 @@
     </a>
     <div class="tocify-wrapper">
       <img src="images/logo.png" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="Examples">Examples</a>
+        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
@@ -225,92 +228,613 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Knife API documentation. Knife is open RESTful API which provides historical and real-time data about cryptocurrencies markets.</p>
+<p>Welcome to the Knife API documentation. </p>
 
-<h2 id="authentification">Authentification</h2>
+<p><strong>Knife</strong> - is most powerfull open RESTful API which provides historical and real-time data about all existing cryptocurrencies markets.
+Our API is integrated with about 70 differrent exchanges:</p>
 
-<p>The proccess of authentification</p>
+<ul>
+<li>Poloniex</li>
+<li>Localbitcoins </li>
+<li>Bitshares</li>
+<li>etc</li>
+</ul>
+
+<p><strong>Disclaimer:</strong>
+<em>bla bla bla <br> to read more CLICK <a href="https://www.google.ru/">HERE</a></em></p>
+
+<h2 id="rate-limiting">Rate Limiting</h2>
+
+<p>Knife API is free to use. However, certain endpoints require authentication. Please <a href="https://knife.io/signup">Sign Up</a> and create a <a href="https://knife.io/profile/apikeys">API Key</a>.</p>
+
+<p>The number of requests to our API are limited on the free plan. Full details of each plan’s access rights can be found <a href="https://knife.io/plans">here</a></p>
+
+<h1 id="authentication">Authentication</h1>
+
+<p>API Key authentication should be used for endpoints that are restricted to a certain plan. These endpoints are marked throughout our documentation where required.</p>
+
+<p>Authenticating your API requests is recommended for all users, as the rate limiting for registered users are more generous.
+Any request that is made using an API Key must be signed, you can create an API Key pair in your <a href="https://knife.io/profile/apikeys">account</a>.</p>
+
+<h2 id="requests">Requests</h2>
+
+<p>All authenticated requests must contain this HTTP header:</p>
+
+<ul>
+<li><code class="prettyprint">Sign:{value}</code></li>
+</ul>
+
+<p><code class="prettyprint">value</code> is composed from <code class="prettyprint">timestamp</code>, <code class="prettyprint">public_key</code> &hellip;. // описать процесс аутентификации и получения <code class="prettyprint">Sign</code></p>
+
+<p>Example of <code class="prettyprint">Sign</code> header:</p>
+
+<ul>
+<li><code class="prettyprint">1234.YzQxNGYyMGI1YzJjNDg3YThkOGU1MTgwZWNhYjY4ODI=.a963aa66dbe4871ca17bbd64d5c1043d2f9204f19538b6e0f69c78f04adab9c8</code></li>
+</ul>
 
 <h1 id="markets">Markets</h1>
 
-<p>There are a set of methods related to markets.
-Market - is a traded pair (e.g. &ldquo;BTCUSD&rdquo;). Knife API provides aggregated data for specified &ldquo;market&rdquo; from all exchanges</p>
+<p>The &ldquo;Markets&rdquo; section contains endpoints related to aggreagated market data.
+Market - is a traded pair (e.g. &ldquo;btc-usd&rdquo; or &ldquo;eth-btc&rdquo;). </p>
 
-<h2 id="get-all-markets">Get all markets</h2>
+<p>Knife API provides aggregated data for specified &ldquo;market&rdquo; from 70 exchanges.</p>
 
-<p>Returns a list of all existing markets. </p>
+<h2 id="list-markets">List Markets</h2>
 
-<h2 id="get-market">Get Market</h2>
+<blockquote>
+<p>GET https://knife.io/api/markets?filter=btc</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
 
-<p>Returns a object with detailed data for specified market</p>
+</span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usd"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exchanges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bitfinex"</span><span class="p">,</span><span class="s2">"bitstamp"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usdt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exchanges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"poloniex"</span><span class="p">,</span><span class="s2">"bittrex"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-cny"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exchanges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"OKcoin"</span><span class="p">,</span><span class="s2">"Huobi"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
 
-<h2 id="get-ticker">Get ticker</h2>
+</span></code></pre>
+<p>Get a list of all existing markets. We calls &ldquo;Market&rdquo; Can be filtered by currency</p>
 
-<p>If no query parameters are sent, then returns ticker data for every supported symbol. If crypto(s) and/or fiat(s) are sent as parameters, then only the ticker for those values is sent</p>
+<p><strong>HTTP Request</strong></p>
 
-<h3 id="per-symbol">Per Symbol</h3>
+<p><code class="prettyprint">GET https://knife.io/api/markets</code></p>
 
-<p>Returns ticker data for specified symbol</p>
+<p><strong>URI parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>filter</td>
+<td>none</td>
+<td>Filter by asset/currency. For example &ldquo;XMR&rdquo; will return all markets for XMR currency. If not specified - full list will be returned</td>
+</tr>
+</tbody></table>
+
+<h2 id="market">Market</h2>
+
+<blockquote>
+<p>GET https://knife.io/api/markets/btc-usd?exclude=poloniex</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth-btc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exchanges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"bittrex"</span><span class="p">,</span><span class="s2">"bitstamp"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">],</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="s2">"0.1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5234440"</span><span class="p">,</span><span class="w"> </span><span class="err">//volume</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">basis</span><span class="w"> </span><span class="err">currency</span><span class="w">
+      </span><span class="s2">"volume_usd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52344400011"</span><span class="w"> </span><span class="err">//volume</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">USD</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get a detailed data for specified market.
+You can <code class="prettyprint">include</code> or <code class="prettyprint">exclude</code> exchanges by specifying desired parameter in URI</p>
+
+<p><strong>HTTP Request</strong></p>
+
+<p><code class="prettyprint">GET https://knife.io/api/markets/{market}</code></p>
+
+<p><code class="prettyprint">market</code> - it can be any existing pair. For example: eth-btc</p>
+
+<p><strong>URI parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include or exclude</td>
+<td>none</td>
+<td>Include or exclude specific exchanges for resulting data</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">You can&rsquo;t use two include and exclude parameters at the same time.</aside>
+
+<h2 id="ticker">Ticker</h2>
+
+<p>Endpoints for retreiving ticker data for any pair (market)</p>
 
 <h3 id="short">Short</h3>
 
-<p>Returns basic ticker denoting last and daily average price for the specified crypto/fiat values.</p>
+<blockquote>
+<p>GET https://knife.io/api/ticker/btc-usd</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
 
-<h3 id="ticker-changes-per-symbol">Ticker Changes Per Symbol</h3>
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="mf">2418.79</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="mf">2418.35</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="mf">2418.66</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"averages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"daily"</span><span class="p">:</span><span class="w"> </span><span class="mf">2418.98</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"weekly"</span><span class="p">:</span><span class="w"> </span><span class="mf">2418.39</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"monthly"</span><span class="p">:</span><span class="w"> </span><span class="mf">2419.76</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">256542.49</span><span class="p">,</span><span class="w"> </span><span class="err">//in</span><span class="w"> </span><span class="err">basis</span><span class="w"> </span><span class="err">currency</span><span class="w">
+  </span><span class="s2">"changes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"weekly"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.92</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"monthly"</span><span class="p">:</span><span class="w"> </span><span class="mf">-20.62</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"daily"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.93</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"percent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"weekly"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.43</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"monthly"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.69</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"daily"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.22</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"volume_percent"</span><span class="p">:</span><span class="w"> </span><span class="mf">66.42</span><span class="p">,</span><span class="w"> </span><span class="err">//from</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">volumes</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">basis</span><span class="w"> </span><span class="err">currency</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458754392</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"display_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wed, 23 Mar 2016 17:33:12 +0000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get actual volume-weighted data for specified <code class="prettyprint">market</code> from all exchanges.</p>
 
-<p>Returns ticker values and price changes for specified market and symbol.</p>
+<p><strong>HTTP Request</strong></p>
 
-<h3 id="custom">Custom</h3>
+<p><code class="prettyprint">GET https://knife.io/api/ticker/{market}</code></p>
 
-<p>This endpoint can be used to generate a custom index in a certain currency. The “inex” path parameter represents “include” or “exclude”, you can choose to generate an index removing specified exchanges, or only including the few that you require.</p>
+<h3 id="full">Full</h3>
 
-<p>Note that the exchange must have an order book in the specified currency.</p>
+<blockquote>
+<p>GET https://knife.io/api/ticker/full/btc-usd</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+
+</span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="s2">"exchange"</span><span class="p">:</span><span class="s2">"poloniex"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="mf">2418.79</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="mf">2418.35</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="mf">2418.66</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"averages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"daily"</span><span class="p">:</span><span class="w"> </span><span class="mf">2418.98</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"weekly"</span><span class="p">:</span><span class="w"> </span><span class="mf">2418.39</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"monthly"</span><span class="p">:</span><span class="w"> </span><span class="mf">2419.76</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">256542.49</span><span class="p">,</span><span class="w"> </span><span class="err">//in</span><span class="w"> </span><span class="err">basis</span><span class="w"> </span><span class="err">currency</span><span class="w">
+  </span><span class="s2">"changes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"weekly"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.92</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"monthly"</span><span class="p">:</span><span class="w"> </span><span class="mf">-20.62</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"daily"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.93</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"percent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"weekly"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.43</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"monthly"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.69</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"daily"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.22</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"volume_percent"</span><span class="p">:</span><span class="w"> </span><span class="mf">66.42</span><span class="p">,</span><span class="w"> </span><span class="err">//from</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">volumes</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">basis</span><span class="w"> </span><span class="err">currency</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458754392</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"display_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wed, 23 Mar 2016 17:33:12 +0000"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="s2">"exchange"</span><span class="p">:</span><span class="s2">"bittrex"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="mf">2418.79</span><span class="p">,</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<p>Get full ticker data for <code class="prettyprint">market</code> divided into exchanges</p>
+
+<p><strong>HTTP Request</strong></p>
+
+<p><code class="prettyprint">GET https://knife.io/api/ticker/full/{market}</code></p>
+
+<p><strong>URI parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include or exclude</td>
+<td>none</td>
+<td>Include or exclude specific exchanges for resulting data</td>
+</tr>
+</tbody></table>
 
 <h1 id="exchanges">Exchanges</h1>
 
-<p>Endpoints to communicate with existing exchanges and retreive different kinds of data</p>
+<p>Endpoints to communicate with existing exchanges and retreive different kinds of data.</p>
 
-<h2 id="get-exchanges">Get Exchanges</h2>
+<h2 id="list-exchanges">List Exchanges</h2>
 
-<p>Returns list of all existing exchanges. Parameters: type, markets</p>
+<blockquote>
+<p>GET https://knife.io/api/exchanges/</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
 
-<p>Response:
-name (markets, pairs)
-health
-ping</p>
+</span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="s2">"exchange"</span><span class="p">:</span><span class="s2">"poloniex"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ex_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="mf">0.003</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ex_url"</span><span class="p">:</span><span class="s2">"https://poloniex.com"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="s2">"exchange"</span><span class="p">:</span><span class="s2">"bittrex"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ex_id"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="mf">0.003</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ex_url"</span><span class="p">:</span><span class="s2">"https://bittrex.com"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+ </span><span class="err">...</span><span class="w">
+</span><span class="p">],</span><span class="w">
 
-<h2 id="exchange-data">Exchange Data</h2>
+</span></code></pre>
+<p>Get list of all existing exchanges where you can get Order Book, Trades History and Charts Data using the endpoints below.</p>
 
-<h3 id="get-data-for-exchange">Get data for Exchange</h3>
+<p><strong>HTTP Request</strong></p>
 
-<p>Returns data about specified exchange:
-name
-url
-traded pairs (symbol, volumes)
-markets
-timestamp</p>
+<p><code class="prettyprint">GET https://knife.io/api/exchanges/</code></p>
 
-<h3 id="get-order-book-by-pair">Get Order Book by pair</h3>
+<h2 id="order-book">Order Book</h2>
 
-<p>Return order book for specified exchange</p>
+<blockquote>
+<p>POST https://knife.io/api/exchanges</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="err">BODY</span><span class="p">:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poloniex"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order_book"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">50</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<h3 id="get-trades-by-pair">Get Trades by pair</h3>
+</span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+      </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poloniex"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usdt"</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order_book"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">696.8600000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0171218000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">11.9314975480</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">696.8600000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1290000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">89.8949400000</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2696.8500000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2145000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">249.4743250000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2696.8500000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1799000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">225.3633150000</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<p>Return trades for specified exchange. </p>
+</span></code></pre>
+<p>Get Order Book for specified <code class="prettyprint">market</code> from specified <code class="prettyprint">exchange</code>. </p>
 
-<h3 id="get-chart-data-by-pair">Get Chart Data by pair</h3>
+<p><strong>HTTP Request</strong></p>
 
-<p>Return OHLCV charts for pair from specified exchange</p>
+<p><code class="prettyprint">POST https://knife.io/api/exchanges/</code></p>
 
-<h3 id="get-ticker">Get ticker</h3>
+<p><strong>POST body parameters</strong></p>
 
-<p>Returns ticker: ask, bid, last, volume</p>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market</td>
+<td>Market (e.g. &ldquo;xmr-btc&rdquo;)</td>
+</tr>
+<tr>
+<td>exchange</td>
+<td>Convention name of exchange</td>
+</tr>
+<tr>
+<td>data</td>
+<td>The type of data. Can be <code class="prettyprint">order_book</code> or &lsquo;trades&rsquo;</td>
+</tr>
+<tr>
+<td>count</td>
+<td>Limits number of resulting order. Set to <code class="prettyprint">0</code> to get full order book. The <code class="prettyprint">count</code> is limited to <code class="prettyprint">10</code> by default</td>
+</tr>
+</tbody></table>
 
-<h1 id="meta-data">Meta data</h1>
+<h2 id="trades-history">Trades History</h2>
 
-<h2 id="get-meta-data">Get Meta Data</h2>
+<blockquote>
+<p>POST https://knife.io/api/exchanges</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="err">BODY</span><span class="p">:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poloniex"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trades_history"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">50</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<p>Returns a meta data of all available coins</p>
+</span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+      </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poloniex"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usdt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"history"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"history"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2675.9900000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2851600000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458754392</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2676.0000000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5000000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458754392</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2676.0000000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0307844000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458754392</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+
+</span></code></pre>
+<p>Get recent trades history for specified <code class="prettyprint">market</code> from specified <code class="prettyprint">exchange</code>. This endpoint can provide only 1000 last trades</p>
+
+<p><strong>HTTP Request</strong></p>
+
+<p><code class="prettyprint">POST https://knife.io/api/exchanges/</code></p>
+
+<p><strong>POST body parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market</td>
+<td>Market (e.g. &ldquo;xmr-btc&rdquo;)</td>
+</tr>
+<tr>
+<td>exchange</td>
+<td>Convention name of exchange</td>
+</tr>
+<tr>
+<td>data</td>
+<td>The type of data. Can be <code class="prettyprint">order_book</code> or <code class="prettyprint">trades</code></td>
+</tr>
+<tr>
+<td>count</td>
+<td>Limits number of resulting order. Set to <code class="prettyprint">0</code> to get full order book. The <code class="prettyprint">count</code> is limited to <code class="prettyprint">10</code> by default</td>
+</tr>
+</tbody></table>
+
+<h1 id="advanced-data">Advanced data</h1>
+
+<p>Knife API provides special endpoints to get different advanced data about crypto-economics.</p>
+
+<h2 id="macro-economics-data">Macro-Economics data</h2>
+
+<blockquote>
+<p>GET https://knife.io/api/advanced/macro?convert=usd</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"total_cap"</span><span class="p">:</span><span class="mi">100000000000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bitcoin_dominance"</span><span class="p">:</span><span class="mf">45.5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total_24h_volume"</span><span class="p">:</span><span class="mi">1349949494</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"active_exchanges"</span><span class="p">:</span><span class="mi">79</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"active_markets"</span><span class="p">:</span><span class="mi">345</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"active_assets"</span><span class="p">:</span><span class="mi">800</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Returns general macro-economics data</p>
+
+<p><strong>HTTP Request</strong></p>
+
+<p><code class="prettyprint">GET https://knife.io/api/advanced/macro</code></p>
+
+<p><strong>URI parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>convert</td>
+<td>fiat symbol for converting <code class="prettyprint">total_cap</code> and <code class="prettyprint">total_24_volume</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="meta-data-per-symbol">Meta Data Per Symbol</h2>
+
+<blockquote>
+<p>GET https://knife.io/api/advanced/meta?symbol=21Mcoin</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+
+</span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"genesis_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21Million"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"Ethereum"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21million"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21MCoin token"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21MCoin"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"consensus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"consensus_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERC20 Token"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"consensus_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethereum"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"descriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Project"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"system_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cryptoasset"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"headline"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Open, transparent media finance platform"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"crowdsales"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-12T00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-12T00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"end_date_plan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-12T00:00:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"genesis_address"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">""</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"funding_terms"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.21million.co.uk/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.21million.co.uk/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tokens_sold"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tokens_issued"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"btc_raised"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cap_limit"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"usd = 7500000"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"raised"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">""</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"website"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21million.co.uk"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.21million.co.uk/"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"Main"</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paper"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21Million Whitepaper"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://media.wix.com/ugd/1478f4_1328b8d0432b41a5a24b40f746e2c031.pdf"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Science"</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"twitter"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Twitter"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twitter.com/Real21Million"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"twitter.png"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"News"</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slack"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21Million Slack"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://21millioncoins.slack.com/signup"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slack.png"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"News"</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.facebook.com/Real21Million/"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"facebook.png"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"News"</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YouTube"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.youtube.com/channel/UCgoT8hDTuUaS-ssjACHI-PA"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"icon"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youtube.png"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"News"</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Returns a meta data for specified <code class="prettyprint">symbol</code> or <code class="prettyprint">name</code> of blockchain system</p>
+
+<p><strong>HTTP Request</strong></p>
+
+<p><code class="prettyprint">GET https://knife.io/api/advanced/meta</code></p>
+
+<p><strong>URI parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>symbol of blockchain asset</td>
+</tr>
+</tbody></table>
+
+<h2 id="social-stats">Social Stats</h2>
+
+<p>//TODO Social stats</p>
 
 <h1 id="conversion">Conversion</h1>
 
@@ -324,72 +848,212 @@ timestamp</p>
 
 <p>Return conversion from start cryptocurrency to resulting cryptocurrency.</p>
 
-<h1 id="general-market-data">General market data</h1>
+<h1 id="historical-data">Historical Data</h1>
 
-<h2 id="get-general-data">Get general Data</h2>
+<p>Get a historical market data for specified <code class="prettyprint">market</code> from specified <code class="prettyprint">exchange</code>. This data available only for &ldquo;Business&rdquo; subscription plan. </p>
 
-<p>Returns general data about crypto-economics state</p>
+<p>Each request should be authenticated.</p>
 
-          <h1 id="errors">Errors</h1>
+<h2 id="trades-history">Trades History</h2>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&lsquo;s frontmatter. Files are included in the order listed.</aside>
+<blockquote>
+<p>GET https://knife.io/api/historical/trades_history?exchange=poloniex&amp;market=btc-usdt&amp;start=18999400404&amp;end=18999400904</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+      </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poloniex"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usdt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trades_history"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"history"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2675.9900000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2851600000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458754392</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUY"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2676.0000000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5000000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458754392</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2676.0000000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0307844000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1458754392</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SELL"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
 
-<p>The Kittn API uses the following error codes:</p>
+</span></code></pre>
+<p>Get historical trades for specified <code class="prettyprint">market</code> from specified <code class="prettyprint">exchange</code>. 
+Returns up to 50 000 trades between <code class="prettyprint">start</code> and <code class="prettyprint">end</code> unix timestamp.</p>
+
+<p><strong>HTTP Request</strong></p>
+
+<p><code class="prettyprint">GET https://knife.io/api/historical/trades_history</code></p>
+
+<p><strong>URI parameters</strong></p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parameter</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>exchange</td>
+<td>Convention name of exchange</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>market</td>
+<td>Name of market (e.g. &ldquo;btc-usdt&rdquo;)</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>start</td>
+<td>Timestamp for start</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>end</td>
+<td>Timestamp for finish</td>
+</tr>
+</tbody></table>
+
+<h2 id="historical-order-book">Historical Order Book</h2>
+
+<blockquote>
+<p>GET https://knife.io/api/historical/order_book?market=btc-usdt&amp;exchange=poloniex&amp;start=18999400404&amp;end=18999400904&amp;type=all</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+      </span><span class="s2">"exchange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"poloniex"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc-usdt"</span><span class="w">
+      </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="mi">18999400404</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">696.8600000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0171218000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">11.9314975480</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="mi">18999400405</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">696.8600000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1290000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">89.8949400000</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="mi">18999400404</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2696.8500000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2145000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">249.4743250000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="mi">18999400405</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2696.8500000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1799000000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">225.3633150000</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Returns historical order book data for specified <code class="prettyprint">market</code> from specified <code class="prettyprint">exchange</code>.
+<code class="prettyprint">Start</code> and <code class="prettyprint">end</code> are given in UNIX timestamp format and used to specify the date range for the data returned.
+All data is sorted by timestamp.</p>
+
+<p><strong>HTTP Request</strong></p>
+
+<p><code class="prettyprint">GET https://knife.io/api/historical/order_book</code></p>
+
+<p><strong>URI parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>exchange</td>
+<td>Convention name of exchange</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>market</td>
+<td>Name of market (e.g. &ldquo;btc-usdt&rdquo;)</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+<td>start</td>
+<td>Timestamp for start</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>end</td>
+<td>Timestamp for finish</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>type</td>
+<td><code class="prettyprint">ask</code> or <code class="prettyprint">bid</code>. By default <code class="prettyprint">all</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="charts-data">Charts Data</h2>
+
+<blockquote>
+<p>GET https://knife.io/api/historical/charts?exchange=poloniex&amp;market=btc-usdt&amp;period=300&amp;start=18999400404&amp;end=18999400904</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="mi">200</span><span class="w"> </span><span class="err">(application/json)</span><span class="w">
+</span><span class="p">[{</span><span class="s2">"date"</span><span class="p">:</span><span class="mi">1405699200</span><span class="p">,</span><span class="s2">"high"</span><span class="p">:</span><span class="mf">0.0045388</span><span class="p">,</span><span class="s2">"low"</span><span class="p">:</span><span class="mf">0.00403001</span><span class="p">,</span><span class="s2">"open"</span><span class="p">:</span><span class="mf">0.00404545</span><span class="p">,</span><span class="s2">"close"</span><span class="p">:</span><span class="mf">0.00435873</span><span class="p">,</span><span class="s2">"volume"</span><span class="p">:</span><span class="mf">44.34555992</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"date"</span><span class="p">:</span><span class="mi">1405713600</span><span class="p">,</span><span class="s2">"high"</span><span class="p">:</span><span class="mf">0.00435</span><span class="p">,</span><span class="s2">"low"</span><span class="p">:</span><span class="mf">0.00412</span><span class="p">,</span><span class="s2">"open"</span><span class="p">:</span><span class="mf">0.00428012</span><span class="p">,</span><span class="s2">"close"</span><span class="p">:</span><span class="mf">0.00412</span><span class="p">,</span><span class="s2">"volume"</span><span class="p">:</span><span class="mf">19.12271662</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"date"</span><span class="p">:</span><span class="mi">1405728000</span><span class="p">,</span><span class="s2">"high"</span><span class="p">:</span><span class="mf">0.00435161</span><span class="p">,</span><span class="s2">"low"</span><span class="p">:</span><span class="mf">0.00406</span><span class="p">,</span><span class="s2">"open"</span><span class="p">:</span><span class="mf">0.00411473</span><span class="p">,</span><span class="s2">"close"</span><span class="p">:</span><span class="mf">0.00435161</span><span class="p">,</span><span class="s2">"volume"</span><span class="p">:</span><span class="mf">35.18169499</span><span class="p">},</span><span class="w">
+
+</span></code></pre>
+<p>Returns candlestick chart data. Required GET parameter <code class="prettyprint">period</code> (candlestick period in seconds; valid values are 300, 900, 1800, 7200, 14400, and 86400). <code class="prettyprint">Start</code> and <code class="prettyprint">end</code> are given in UNIX timestamp format and used to specify the date range for the data returned.</p>
+
+<p><strong>HTTP Request</strong></p>
+
+<p><code class="prettyprint">GET https://knife.io/api/historical/charts</code></p>
+
+<p><strong>URI parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>exchange</td>
+<td>Convention name of exchange</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>market</td>
+<td>Name of market (e.g. &ldquo;btc-usdt&rdquo;)</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>period</td>
+<td>Candlestick period in seconds; valid values are 300, 900, 1800, 7200, 14400, and 86400.</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
+<td>start</td>
+<td>Timestamp for start</td>
+</tr>
+<tr>
+<td>end</td>
+<td>Timestamp for finish</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="Examples">Examples</a>
+          </div>
       </div>
     </div>
   </body>
