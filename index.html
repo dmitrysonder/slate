@@ -834,19 +834,152 @@ You can <code class="prettyprint">include</code> or <code class="prettyprint">ex
 
 <h2 id="social-stats">Social Stats</h2>
 
-<p>//TODO Social stats</p>
+<blockquote>
+<p>GET https://knife.io/api/advanced/social?symbol=BTC</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"Response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Social data successfully returned"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"General"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CoinName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Webpagecoinp"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Points"</span><span class="p">:</span><span class="w"> </span><span class="mi">344868</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"Social"</span><span class="p">:[</span><span class="w"> 
+    </span><span class="s2">"Twitter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">98788</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"following"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lists"</span><span class="p">:</span><span class="w"> </span><span class="mi">1891</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"favourites"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statuses"</span><span class="p">:</span><span class="w"> </span><span class="mi">12616</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"account_creation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1313643968"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twitter.com/bitcoin"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Points"</span><span class="p">:</span><span class="w"> </span><span class="mi">108255</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"Reddit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"subscribers"</span><span class="p">:</span><span class="w"> </span><span class="mi">176594</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"active_users"</span><span class="p">:</span><span class="w"> </span><span class="mi">381</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"community_creation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1284042626"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"posts_per_hour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.06"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"posts_per_day"</span><span class="p">:</span><span class="w"> </span><span class="s2">"121.49"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comments_per_hour"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44.82"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comments_per_day"</span><span class="p">:</span><span class="w"> </span><span class="mf">1075.7</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.reddit.com/r/bitcoin/"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Points"</span><span class="p">:</span><span class="w"> </span><span class="mi">179888</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"Facebook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"likes"</span><span class="p">:</span><span class="w"> </span><span class="mi">25816</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"talking_about"</span><span class="p">:</span><span class="w"> </span><span class="mi">93</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin P2P Cryptocurrency"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.facebook.com/bitcoins/"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Points"</span><span class="p">:</span><span class="w"> </span><span class="mi">26746</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"CodeRepository"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"List"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"stars"</span><span class="p">:</span><span class="w"> </span><span class="mi">7918</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C++"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"forks"</span><span class="p">:</span><span class="w"> </span><span class="mi">5439</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open_total_issues"</span><span class="p">:</span><span class="w"> </span><span class="s2">"402"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"subscribers"</span><span class="p">:</span><span class="w"> </span><span class="mi">1013</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100332"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/bitcoin/bitcoin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_update"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1449226680"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_push"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1449225545"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1292771803"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fork"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"InternalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"parent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"InternalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"open_pull_issues"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"closed_pull_issues"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4820"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"closed_total_issues"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6753"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open_issues"</span><span class="p">:</span><span class="w"> </span><span class="s2">"323"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"closed_issues"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1933"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Points"</span><span class="p">:</span><span class="w"> </span><span class="mi">21835</span><span class="w">
+      </span><span class="p">}],</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get social stats data per specified <code class="prettyprint">symbol</code></p>
+
+<p><strong>HTTP Request</strong></p>
+
+<p><code class="prettyprint">GET https://knife.io/api/advanced/meta</code></p>
+
+<p><strong>URI parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>symbol of blockchain asset</td>
+</tr>
+</tbody></table>
+
+<h1 id="blockchain-data">Blockchain Data</h1>
+
+<p>See here: https://chainz.cryptoid.info/api.dws</p>
 
 <h1 id="conversion">Conversion</h1>
 
 <p>Endpoint to convert any currency to any currency</p>
 
-<h2 id="perform-crypto-fiat-conversion">Perform crypto-fiat conversion</h2>
+<h2 id="perform-conversion">Perform conversion</h2>
 
-<p>Returns conversion from start currency to resulting currency. Only conversion from fiat to crypto, or vice verca</p>
+<blockquote>
+<p>GET https://knife.io/api/convert?from=btc&amp;to=eth&amp;amount=1</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4-06-2017 13:55:32"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.93</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns conversion from any (crypto or fiat) currency to any other (crypto or fiat) currency</p>
 
-<h2 id="perfrom-crypto-crypto-conversion">Perfrom crypto-crypto conversion</h2>
+<p><strong>HTTP Request</strong></p>
 
-<p>Return conversion from start cryptocurrency to resulting cryptocurrency.</p>
+<p><code class="prettyprint">GET https://knife.io/api/convert</code></p>
+
+<p><strong>URI parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>Source currency code</td>
+</tr>
+<tr>
+<td>to</td>
+<td>Target currency code</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>Amount of source currency</td>
+</tr>
+</tbody></table>
 
 <h1 id="historical-data">Historical Data</h1>
 
