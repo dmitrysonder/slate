@@ -541,19 +541,131 @@ symbol | symbol of blockchain asset
 
 ## Social Stats
 
-//TODO Social stats
+> GET https://knife.io/api/advanced/social?symbol=BTC
+
+```json
+{
+  "Response": "Success",
+  "Message": "Social data successfully returned",
+  "Type": 100,
+  "Data": {
+    "General": {
+      "Name": "BTC",
+      "CoinName": "Bitcoin",
+      "Type": "Webpagecoinp",
+      "Points": 344868
+    },
+    "Social":[ 
+    "Twitter": {
+      "followers": 98788,
+      "following": "98",
+      "lists": 1891,
+      "favourites": "71",
+      "statuses": 12616,
+      "account_creation": "1313643968",
+      "name": "Bitcoin",
+      "link": "https://twitter.com/bitcoin",
+      "Points": 108255
+    },
+    "Reddit": {
+      "subscribers": 176594,
+      "active_users": 381,
+      "community_creation": "1284042626",
+      "posts_per_hour": "5.06",
+      "posts_per_day": "121.49",
+      "comments_per_hour": "44.82",
+      "comments_per_day": 1075.7,
+      "link": "https://www.reddit.com/r/bitcoin/",
+      "name": "Bitcoin",
+      "Points": 179888
+    },
+    "Facebook": {
+      "likes": 25816,
+      "is_closed": "false",
+      "talking_about": 93,
+      "name": "Bitcoin P2P Cryptocurrency",
+      "link": "https://www.facebook.com/bitcoins/",
+      "Points": 26746
+    },
+    "CodeRepository": {
+      "List": [{
+        "stars": 7918,
+        "language": "C++",
+        "forks": 5439,
+        "open_total_issues": "402",
+        "subscribers": 1013,
+        "size": "100332",
+        "url": "https://github.com/bitcoin/bitcoin",
+        "last_update": "1449226680",
+        "last_push": "1449225545",
+        "created_at": "1292771803",
+        "fork": "false",
+        "source": {
+          "Name": "",
+          "Url": "",
+          "InternalId": -1
+        },
+        "parent": {
+          "Name": "",
+          "Url": "",
+          "InternalId": -1
+        },
+        "open_pull_issues": "79",
+        "closed_pull_issues": "4820",
+        "closed_total_issues": "6753",
+        "open_issues": "323",
+        "closed_issues": "1933",
+        "Points": 21835
+      }],
+    }
+  }
+}
+```
+Get social stats data per specified `symbol`
+
+**HTTP Request**
+
+`GET https://knife.io/api/advanced/meta`
+
+**URI parameters**
+
+Parameter | Description
+--------- | -----------
+symbol | symbol of blockchain asset
+
+# Blockchain Data
+
+See here: https://chainz.cryptoid.info/api.dws
 
 # Conversion
 
 Endpoint to convert any currency to any currency
 
-## Perform crypto-fiat conversion
+## Perform conversion
 
-Returns conversion from start currency to resulting currency. Only conversion from fiat to crypto, or vice verca
+> GET https://knife.io/api/convert?from=btc&to=eth&amount=1
 
-## Perfrom crypto-crypto conversion
+```json
+{
+  "success": true,
+  "time": "4-06-2017 13:55:32",
+  "price": 10.93
+}
+```
 
-Return conversion from start cryptocurrency to resulting cryptocurrency.
+Returns conversion from any (crypto or fiat) currency to any other (crypto or fiat) currency
+
+**HTTP Request**
+
+`GET https://knife.io/api/convert`
+
+**URI parameters**
+
+Parameter | Description
+--------- | -----------
+from | Source currency code
+to | Target currency code
+amount | Amount of source currency
 
 # Historical Data
 
